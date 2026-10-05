@@ -143,8 +143,10 @@
   <!-- Ambient Petals Container -->
   <div id="petal-field" class="fixed inset-0 pointer-events-none z-30 overflow-hidden"></div>
 
-  <!-- Music & Petal Control Floating Bar -->
+  <!-- Music, Scroll & Petal Control Floating Bar -->
   <div class="fixed top-3 right-3 sm:top-4 sm:right-4 z-50 flex items-center space-x-1.5 sm:space-x-2 bg-pink-950/90 backdrop-blur-md px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full border border-pink-400/40 shadow-xl">
+    
+    <!-- Audio Button -->
     <button id="audio-toggle" onclick="toggleAudio()" class="flex items-center space-x-1 sm:space-x-1.5 text-xs text-pink-200 hover:text-pink-100 focus:outline-none px-1.5 sm:px-2 py-1 rounded-full transition touch-manipulation" title="Toggle Shehnai/Santoor Wedding Ambiance">
       <svg id="audio-icon-on" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-300 hidden animate-spin" style="animation-duration: 4s;" fill="currentColor" viewBox="0 0 20 20">
         <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"></path>
@@ -152,7 +154,18 @@
       <span id="audio-icon-svg" class="text-xs sm:text-sm">🎵</span>
       <span id="audio-text" class="tracking-widest uppercase font-semibold text-[9px] sm:text-[10px]">Play Music</span>
     </button>
+
     <div class="h-3 w-px bg-pink-400/40"></div>
+
+    <!-- Manual Auto-Scroll Toggle Button -->
+    <button id="scroll-toggle" onclick="toggleManualScroll()" class="flex items-center space-x-1 text-xs text-pink-200 hover:text-pink-100 focus:outline-none px-1.5 sm:px-2 py-1 rounded-full transition touch-manipulation" title="Pause or Resume Auto Scroll">
+      <span id="scroll-icon" class="text-xs sm:text-sm">⏸️</span>
+      <span id="scroll-text" class="tracking-widest uppercase font-semibold text-[9px] sm:text-[10px]">Pause</span>
+    </button>
+
+    <div class="h-3 w-px bg-pink-400/40"></div>
+
+    <!-- Petals Button -->
     <button onclick="togglePetals()" class="text-xs text-pink-300 hover:text-pink-100 px-1 py-1 touch-manipulation" title="Toggle Floating Petals">
       🌸
     </button>
@@ -659,6 +672,32 @@
     let autoScrollRaf = null;
     let userInteracted = false;
 
+    // --- Update Scroll Button UI ---
+    function updateScrollButtonUI() {
+      const scrollText = document.getElementById('scroll-text');
+      const scrollIcon = document.getElementById('scroll-icon');
+      if (scrollText && scrollIcon) {
+        if (autoScrollActive) {
+          scrollIcon.innerText = '⏸️';
+          scrollText.innerText = 'Pause';
+        } else {
+          scrollIcon.innerText = '▶️';
+          scrollText.innerText = 'Scroll';
+        }
+      }
+    }
+
+    // --- Manual Toggle for Auto-Scroll ---
+    function toggleManualScroll() {
+      if (autoScrollActive) {
+        stopAutoScroll();
+      } else {
+        userInteracted = false;
+        startAutoScroll();
+      }
+      updateScrollButtonUI();
+    }
+
     // --- Dynamic styling for "Will you join us?" toggle ---
     function toggleIntentStyle() {
       const selected = document.querySelector('input[name="rsvp_intent"]:checked').value;
@@ -723,6 +762,7 @@
       if (autoScrollActive) return;
       autoScrollActive = true;
       userInteracted = false;
+      updateScrollButtonUI();
 
       const scrollSpeed = 1.0;
       let accumulated = 0;
@@ -730,6 +770,7 @@
       function step() {
         if (!autoScrollActive || userInteracted) {
           autoScrollActive = false;
+          updateScrollButtonUI();
           return;
         }
 
@@ -744,6 +785,7 @@
 
         if (currentScroll >= maxScroll - 3) {
           autoScrollActive = false;
+          updateScrollButtonUI();
           updateAudioVolumeByScroll();
           return;
         }
@@ -768,6 +810,7 @@
       if (autoScrollRaf) {
         cancelAnimationFrame(autoScrollRaf);
       }
+      updateScrollButtonUI();
     }
 
     function updateAudioVolumeByScroll() {
@@ -947,6 +990,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       customAudio = document.getElementById('custom-wedding-audio');
+      updateScrollButtonUI();
     });
   </script>
 </body>
