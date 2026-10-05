@@ -143,32 +143,47 @@
   <!-- Ambient Petals Container -->
   <div id="petal-field" class="fixed inset-0 pointer-events-none z-30 overflow-hidden"></div>
 
-  <!-- Music, Scroll & Petal Control Floating Bar -->
-  <div class="fixed top-3 right-3 sm:top-4 sm:right-4 z-50 flex items-center space-x-1.5 sm:space-x-2 bg-pink-950/90 backdrop-blur-md px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full border border-pink-400/40 shadow-xl">
+  <!-- Transparent & Non-Obtrusive Floating Controls at Bottom Right -->
+  <div class="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 z-50 flex flex-col items-end space-y-1.5 select-none pointer-events-auto">
     
-    <!-- Audio Button -->
-    <button id="audio-toggle" onclick="toggleAudio()" class="flex items-center space-x-1 sm:space-x-1.5 text-xs text-pink-200 hover:text-pink-100 focus:outline-none px-1.5 sm:px-2 py-1 rounded-full transition touch-manipulation" title="Toggle Shehnai/Santoor Wedding Ambiance">
-      <svg id="audio-icon-on" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-300 hidden animate-spin" style="animation-duration: 4s;" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"></path>
-      </svg>
-      <span id="audio-icon-svg" class="text-xs sm:text-sm">🎵</span>
-      <span id="audio-text" class="tracking-widest uppercase font-semibold text-[9px] sm:text-[10px]">Play Music</span>
+    <!-- Auto Scroll Pill (Lightweight translucent dark) -->
+    <button 
+      id="scroll-toggle" 
+      onclick="toggleManualScroll()" 
+      class="flex items-center space-x-1.5 bg-black/40 hover:bg-black/60 text-[#FCEEE2] border border-white/20 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-cinzel font-medium transition active:scale-95 touch-manipulation shadow-sm"
+      title="Pause or Resume Auto Scroll"
+    >
+      <span id="scroll-icon" class="text-[8px] text-[#F9D9E2]">▶</span>
+      <span id="scroll-text" class="tracking-widest uppercase">AUTO SCROLL</span>
     </button>
 
-    <div class="h-3 w-px bg-pink-400/40"></div>
+    <!-- Music & Petals Pill (Ultra-sheer frosted glass) -->
+    <div class="flex items-center bg-white/30 hover:bg-white/45 text-stone-900 border border-white/30 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-cinzel font-medium transition shadow-sm">
+      <!-- Music Toggle -->
+      <button 
+        id="audio-toggle" 
+        onclick="toggleAudio()" 
+        class="flex items-center space-x-1 hover:text-[#8E2843] focus:outline-none transition touch-manipulation" 
+        title="Toggle Wedding Music"
+      >
+        <span id="audio-icon-svg" class="text-[9px] text-[#6E2E42]">▶</span>
+        <span id="audio-text" class="tracking-wider uppercase">MUSIC: OFF</span>
+      </button>
 
-    <!-- Manual Auto-Scroll Toggle Button -->
-    <button id="scroll-toggle" onclick="toggleManualScroll()" class="flex items-center space-x-1 text-xs text-pink-200 hover:text-pink-100 focus:outline-none px-1.5 sm:px-2 py-1 rounded-full transition touch-manipulation" title="Pause or Resume Auto Scroll">
-      <span id="scroll-icon" class="text-xs sm:text-sm">⏸️</span>
-      <span id="scroll-text" class="tracking-widest uppercase font-semibold text-[9px] sm:text-[10px]">Pause</span>
-    </button>
+      <!-- Minimal Divider -->
+      <span class="mx-1.5 text-stone-600/40">|</span>
 
-    <div class="h-3 w-px bg-pink-400/40"></div>
-
-    <!-- Petals Button -->
-    <button onclick="togglePetals()" class="text-xs text-pink-300 hover:text-pink-100 px-1 py-1 touch-manipulation" title="Toggle Floating Petals">
-      🌸
-    </button>
+      <!-- Petals Toggle -->
+      <button 
+        id="petal-toggle" 
+        onclick="togglePetals()" 
+        class="flex items-center space-x-1 hover:text-[#8E2843] focus:outline-none transition touch-manipulation" 
+        title="Toggle Floating Petals"
+      >
+        <span class="text-[11px] opacity-80">🌸</span>
+        <span id="petal-text" class="tracking-wider uppercase">PETALS</span>
+      </button>
+    </div>
   </div>
 
   <!-- Fullscreen Interactive Envelope Landing -->
@@ -227,10 +242,107 @@
     </div>
   </div>
 
-  <!-- Main Invitation Website Container -->
-  <main class="w-full max-w-4xl px-2.5 sm:px-6 py-6 sm:py-10 md:py-14 z-10 flex flex-col items-center">
+  <!-- Main Container -->
+  <main class="w-full max-w-4xl px-2.5 sm:px-6 py-6 sm:py-10 md:py-14 z-10 flex flex-col items-center space-y-10 sm:space-y-14">
 
-    <!-- Card Root Frame -->
+    <!-- ==================== COVER PAGE SECTION ==================== -->
+    <section id="cover-page" class="w-full card-texture rounded-2xl sm:rounded-3xl p-3.5 sm:p-8 md:p-12 relative border-4 sm:border-[6px] border-[#F5D5DE] shadow-2xl overflow-hidden transition-all duration-700">
+      
+      <!-- Ornate Inner Border -->
+      <div class="border sm:border-2 border-dashed border-[#D48C9E] rounded-xl sm:rounded-2xl p-4 sm:p-8 md:p-10 relative flex flex-col items-center text-center">
+        
+        <!-- Corner Ornaments -->
+        <div class="absolute -top-2.5 -left-2.5 sm:-top-3 sm:-left-3 text-[#D48C9E] opacity-80 pointer-events-none select-none">
+          <svg class="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M0,0 C30,10 50,30 50,60 C40,40 30,30 0,0 Z M10,0 C40,20 60,40 60,70 C50,50 40,40 10,0 Z M0,10 C20,40 40,60 70,60 C50,50 40,40 0,10 Z"></path>
+          </svg>
+        </div>
+        <div class="absolute -top-2.5 -right-2.5 sm:-top-3 sm:-right-3 text-[#D48C9E] opacity-80 pointer-events-none select-none rotate-90">
+          <svg class="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M0,0 C30,10 50,30 50,60 C40,40 30,30 0,0 Z M10,0 C40,20 60,40 60,70 C50,50 40,40 10,0 Z M0,10 C20,40 40,60 70,60 C50,50 40,40 0,10 Z"></path>
+          </svg>
+        </div>
+        <div class="absolute -bottom-2.5 -left-2.5 sm:-bottom-3 sm:-left-3 text-[#D48C9E] opacity-80 pointer-events-none select-none -rotate-90">
+          <svg class="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M0,0 C30,10 50,30 50,60 C40,40 30,30 0,0 Z M10,0 C40,20 60,40 60,70 C50,50 40,40 10,0 Z M0,10 C20,40 40,60 70,60 C50,50 40,40 0,10 Z"></path>
+          </svg>
+        </div>
+        <div class="absolute -bottom-2.5 -right-2.5 sm:-bottom-3 sm:-right-3 text-[#D48C9E] opacity-80 pointer-events-none select-none rotate-180">
+          <svg class="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M0,0 C30,10 50,30 50,60 C40,40 30,30 0,0 Z M10,0 C40,20 60,40 60,70 C50,50 40,40 10,0 Z M0,10 C20,40 40,60 70,60 C50,50 40,40 0,10 Z"></path>
+          </svg>
+        </div>
+
+        <!-- Cover Header Script & Auspicious Invocation -->
+        <div class="w-full max-w-xl mx-auto pt-2 pb-3">
+          <p class="font-cinzel text-rose-900/80 text-[10px] sm:text-xs tracking-[0.25em] uppercase mb-1">
+            ॥ श्री गणेशाय नमः ॥
+          </p>
+          <p class="font-serif italic text-lg sm:text-2xl md:text-3xl text-[#7E243E] font-medium leading-relaxed">
+            You’re cordially invited to the Marriage Ceremony of
+          </p>
+          <div class="flex items-center justify-center space-x-3 my-3 sm:my-4">
+            <div class="h-px bg-gradient-to-r from-transparent to-[#D48C9E] w-14 sm:w-24"></div>
+            <span class="text-[#D48C9E] text-sm">🌸 ✦ 🌸</span>
+            <div class="h-px bg-gradient-to-l from-transparent to-[#D48C9E] w-14 sm:w-24"></div>
+          </div>
+        </div>
+
+        <!-- Central Circular Monogram Emblem -->
+        <div class="my-4 sm:my-6 flex justify-center">
+          <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full p-1 bg-gradient-to-b from-[#EAAAB9] via-[#D48C9E] to-[#8C2843] shadow-[0_6px_22px_rgba(162,89,108,0.35)] flex items-center justify-center glow-anim">
+            <div class="w-full h-full rounded-full bg-white overflow-hidden flex items-center justify-center border-2 border-[#FADDE4]">
+              <img 
+                src="weddlogo.jpeg" 
+                alt="Aparna & Sahil" 
+                class="w-full h-full object-cover scale-105" 
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Couple Banner on Cover -->
+        <div class="my-2 sm:my-4">
+          <h1 class="font-script text-4xl sm:text-6xl md:text-7xl text-[#922847] leading-tight filter drop-shadow-sm">
+            Aparna
+          </h1>
+          <div class="flex items-center justify-center my-2 sm:my-3">
+            <span class="inline-block px-4 py-0.5 sm:px-5 sm:py-1 text-[10px] sm:text-xs font-cinzel tracking-[0.25em] text-[#84203B] bg-[#FCE5EB] rounded-full border border-[#E9A9B9] font-bold">
+              WITH
+            </span>
+          </div>
+          <h2 class="font-script text-4xl sm:text-6xl md:text-7xl text-[#922847] leading-tight filter drop-shadow-sm">
+            Sahil
+          </h2>
+        </div>
+
+        <!-- Soft Divider -->
+        <div class="w-full max-w-lg h-px bg-gradient-to-r from-transparent via-[#EDBAC8] to-transparent my-4 sm:my-6"></div>
+
+        <!-- Bottom Invitation Host Card on Cover -->
+        <div class="w-full max-w-xl mx-auto py-3 px-4 sm:px-6 bg-[#FFF1F4]/80 rounded-2xl border border-[#F0C2CE] shadow-sm flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
+          <div class="mb-2 sm:mb-0">
+            <p class="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#9B455D] font-bold mb-0.5">
+              A CORDIAL INVITATION FROM :
+            </p>
+            <p class="font-serif font-bold text-base sm:text-lg text-stone-800 leading-snug">
+              Smt. Ratni Razdan &amp; Sh. Sandesh Kumar Razdan
+            </p>
+            <p class="text-xs sm:text-sm italic font-serif text-rose-800/80">
+              Razdan Parivaar
+            </p>
+          </div>
+
+          <!-- Decorative Seal Stamp -->
+          <div class="w-10 h-10 rounded-full border-2 border-[#D48C9E] flex items-center justify-center text-[#8C2843] bg-white shadow-sm flex-shrink-0">
+            <span class="text-base">🪷</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== MAIN CARD FRAME ==================== -->
     <div id="wedding-card" class="w-full card-texture rounded-2xl sm:rounded-3xl p-3.5 sm:p-8 md:p-12 relative border-4 sm:border-[6px] border-[#F5D5DE] shadow-2xl overflow-hidden transition-all duration-700">
       
       <!-- Ornate Outer Border -->
@@ -322,20 +434,6 @@
         <!-- Center Couple Banner with Monogram -->
         <section class="my-6 sm:my-8 text-center relative py-4 sm:py-6 border-y border-[#EDBAC8]/70">
           
-          <!-- Floral Garland / Ribbon divider -->
-          <div class="flex items-center justify-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
-            <div class="h-px bg-gradient-to-r from-transparent to-[#D48C9E] w-12 sm:w-24"></div>
-            <!-- Royal Monogram Emblem -->
-            <div class="w-14 h-14 sm:w-20 sm:h-20 rounded-full border-2 border-[#D48C9E] shadow-lg relative overflow-hidden flex items-center justify-center p-0.5 bg-gradient-to-b from-[#FFFFFF] to-[#FCE8ED] ring-1 ring-[#D48C9E]/50">
-              <img 
-                src="weddlogo.jpeg" 
-                alt="Aparna & Sahil" 
-                class="w-full h-full rounded-full object-cover" 
-              />
-            </div>
-            <div class="h-px bg-gradient-to-l from-transparent to-[#D48C9E] w-12 sm:w-24"></div>
-          </div>
-
           <!-- Bride Section -->
           <div class="my-2 sm:my-3">
             <h2 class="font-script text-4xl sm:text-6xl md:text-7xl text-[#922847] leading-tight filter drop-shadow-sm">
@@ -430,7 +528,7 @@
                 </div>
                 <span class="text-xl sm:text-2xl">🌿</span>
               </div>
-              <p class="text-xs sm:text-sm font-semibold text-stone-700 mt-2 flex items-center font-serif">
+              <p class="text-sm sm:text-base font-bold text-[#8E2843] mt-2 flex items-center font-serif">
                 <span class="mr-1.5">📅</span> Sun, 22nd November 2026 • 10:00 AM
               </p>
               <p class="text-xs sm:text-sm text-stone-600 mt-1 flex items-start leading-snug font-serif">
@@ -455,10 +553,10 @@
                 </div>
                 <span class="text-xl sm:text-2xl">✨</span>
               </div>
-              <p class="text-xs sm:text-sm font-semibold text-stone-700 mt-2 flex items-center font-serif">
+              <p class="text-sm sm:text-base font-bold text-[#8E2843] mt-2 flex items-center font-serif">
                 <span class="mr-1.5">📅</span> Sun, 22nd November 2026 • 6:00 PM Onwards
               </p>
-              <p class="text-xs sm:text-sm text-stone-600 mt-1 flex items-start leading-snug font-serif">
+              <p class="text-xs sm:text-stone-600 mt-1 flex items-start leading-snug font-serif">
                 <span class="mr-1.5 mt-0.5">📍</span>
                 <span>MD Resorts, Bantalab, Jammu</span>
               </p>
@@ -694,11 +792,11 @@
       const scrollIcon = document.getElementById('scroll-icon');
       if (scrollText && scrollIcon) {
         if (autoScrollActive) {
-          scrollIcon.innerText = '⏸️';
-          scrollText.innerText = 'Pause';
+          scrollIcon.innerText = '⏸';
+          scrollText.innerText = 'PAUSE SCROLL';
         } else {
-          scrollIcon.innerText = '▶️';
-          scrollText.innerText = 'Scroll';
+          scrollIcon.innerText = '▶';
+          scrollText.innerText = 'AUTO SCROLL';
         }
       }
     }
@@ -846,10 +944,8 @@
         isPlaying = false;
         const audioBtn = document.getElementById('audio-text');
         const audioIcon = document.getElementById('audio-icon-svg');
-        const spinner = document.getElementById('audio-icon-on');
-        if (audioBtn) audioBtn.innerText = 'Play Music';
-        if (audioIcon) audioIcon.classList.remove('hidden');
-        if (spinner) spinner.classList.add('hidden');
+        if (audioBtn) audioBtn.innerText = 'MUSIC: OFF';
+        if (audioIcon) audioIcon.innerText = '▶';
       } else if (remainingDistance < fadeZone) {
         customAudio.volume = Math.max(0, remainingDistance / fadeZone);
       } else {
@@ -968,6 +1064,10 @@
 
     function togglePetals() {
       petalsActive = !petalsActive;
+      const petalText = document.getElementById('petal-text');
+      if (petalText) {
+        petalText.innerText = petalsActive ? 'PETALS' : 'PETALS: OFF';
+      }
       if (!petalsActive) {
         petalContainer.innerHTML = '';
       }
@@ -980,7 +1080,6 @@
 
       const audioBtn = document.getElementById('audio-text');
       const audioIcon = document.getElementById('audio-icon-svg');
-      const spinner = document.getElementById('audio-icon-on');
 
       if (!isPlaying) {
         updateAudioVolumeByScroll();
@@ -988,9 +1087,8 @@
         if (playPromise !== undefined) {
           playPromise.then(() => {
             isPlaying = true;
-            if (audioBtn) audioBtn.innerText = 'Pause Music';
-            if (audioIcon) audioIcon.classList.remove('hidden');
-            if (spinner) spinner.classList.remove('hidden');
+            if (audioBtn) audioBtn.innerText = 'MUSIC: ON';
+            if (audioIcon) audioIcon.innerText = '⏸';
           }).catch(err => {
             console.warn('Playback waiting for direct user gesture', err);
           });
@@ -998,9 +1096,8 @@
       } else {
         isPlaying = false;
         customAudio.pause();
-        if (audioBtn) audioBtn.innerText = 'Play Music';
-        if (audioIcon) audioIcon.classList.remove('hidden');
-        if (spinner) spinner.classList.add('hidden');
+        if (audioBtn) audioBtn.innerText = 'MUSIC: OFF';
+        if (audioIcon) audioIcon.innerText = '▶';
       }
     }
 
