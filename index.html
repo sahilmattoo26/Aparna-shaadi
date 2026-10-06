@@ -181,7 +181,7 @@
         title="Toggle Floating Petals"
       >
         <span class="text-[11px] opacity-80">🌸</span>
-        <span id="petal-text" class="tracking-wider uppercase">PETALS</span>
+        <span id="petal-text" class="tracking-wider uppercase"></span>
       </button>
     </div>
   </div>
@@ -307,7 +307,7 @@
             Aparna
           </h1>
           <div class="flex items-center justify-center my-2 sm:my-3">
-            <span class="inline-block px-4 py-0.5 sm:px-5 sm:py-1 text-[10px] sm:text-3xl font-cinzel text-[#84203B] rounded-full font-script">
+            <span class="inline-block px-4 py-0.5 sm:px-5 sm:py-1 text-[10px] sm:text-5xl font-cinzel text-[#84203B] rounded-full font-script">
               and
             </span>
           </div>
@@ -439,7 +439,7 @@
 
           <!-- Sacred Knot / With -->
           <div class="flex items-center justify-center my-2 sm:my-3">
-            <span class="inline-block px-4 py-0.5 sm:px-5 sm:py-1 text-[10px] sm:text-3xl font-cinzel text-[#84203B] rounded-full font-script">
+            <span class="inline-block px-4 py-0.5 sm:px-5 sm:py-1 text-[10px] sm:text-5xl font-cinzel text-[#84203B] rounded-full font-script">
               weds
             </span>
           </div>
@@ -837,7 +837,7 @@
 
       triggerCelebrationConfetti();
 
-      const phone = "919419828519";
+      const phone = "9149691946";
       let message = `Namaskar! Sending Ashirwad for Aparna & Sahil's Wedding.\n\n*Name/Family:* ${name}\n*Will you join us?* ${intent}`;
       if (wish) {
         message += `\n*Blessings / Message:* ${wish}`;
@@ -1057,7 +1057,7 @@
       petalsActive = !petalsActive;
       const petalText = document.getElementById('petal-text');
       if (petalText) {
-        petalText.innerText = petalsActive ? 'PETALS' : 'PETALS: OFF';
+        petalText.innerText = petalsActive ? '' : '';
       }
       if (!petalsActive) {
         petalContainer.innerHTML = '';
